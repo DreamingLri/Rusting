@@ -17,6 +17,17 @@ impl Rectangle {
     fn get_area(&self) -> u32{
         self.width * self.length
     }
+
+    fn can_hold(&self, other: &Rectangle) -> bool{
+        self.width > other.width && self.length > other.length
+    }
+
+    fn square(size: u32) -> Rectangle{
+        Rectangle{
+            width: size,
+            length: size,
+        }
+    }
 }
 
 
@@ -47,11 +58,22 @@ fn main() {
 
     println!("{:?}", user1);
 
-    let rect = Rectangle{
+    let rect1 = Rectangle{
         width: 30,
         length: 50,
     };
 
-    println!("{}", rect.get_area());
+    let rect2 = Rectangle{
+        width: 40,
+        length: 60,
+    };
+
+    let square = Rectangle::square(20);
+
+    println!("{}", rect1.get_area());
+
+    println!("{}", rect1.can_hold(&rect2));
+
+    println!("{}", square.get_area());
 
 }
