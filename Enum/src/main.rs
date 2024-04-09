@@ -1,63 +1,48 @@
-enum Result{
-    Ok,
-    Warning{
-        code: i32,
-        message: String,
-    },
-    Err(String),
-}
-
-// match make_result() {
-//     Result::Ok =>
-//     println!("Ok"),
-//     Result::Warning {code, message}=>
-//     println!("Warning: {}", message),
-//     Result::Err(s)=>
-//     println!("Failed: {}", s),
-// }
-
-enum Option<T>{
-    Some(T),
-    None,
-}
-
-// enum IpAddrKind{
+// enum IpAddKind{
 //     V4,
 //     V6,
 // }
-//
+
+enum IpAddrKind{
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
 // struct IpAddr{
-//     kind: IpAddrKind,
+//     kind: IpAddKind,
 //     address: String,
 // }
 
-enum IpAddr{
-    V4(u8, u8, u8, u8),
-    V6(String)
+enum Message{
+    Quit,
+    Move{x: u32, y: u32},
+    Write(String),
+    ChangeColor(u32, u32, u32),
 }
 
-
-fn plus_one(x: Option<i32>) -> Option<i32>{
-    match x {
-        None => Option::None,
-        Some(i) => Option::Some(i+1),
-    }
+impl Message{
+    fn call(&self){}
 }
-
 
 fn main() {
+    // let four = IpAddKind::V4;
+    // let six = IpAddKind::V6;
+    //
     // let home = IpAddr{
-    //     kind: IpAddrKind::V4,
+    //     kind: IpAddKind::V4,
     //     address: String::from("127.0.0.1"),
     // };
-    let home = IpAddr::V4(127, 0, 0, 1);
-    let loopback = IpAddr::V6(String::from("::1"));
 
-    // let y: i8 = 5;
-    // let x = Some(5);
-    // let z = x + y;
+    let home = IpAddrKind::V4(127, 0, 0, 0);
+    let loopback = IpAddrKind::V6(String::from("::1"));
 
-    let five = Option::Some(5);
-    let six = plus_one(five);
-    let none = plus_one(Option::None);
+    let q = Message::Quit;
+    let m = Message::Move {x: 10, y: 20};
+    let w = Message::Write(String::from("hello"));
+    let c = Message::ChangeColor(20, 30, 40);
+
+    m.call();
+    // let loopback = IpAddr{
+    //     kind: IpAddKind::V6,
+    //     address: String::from("::1"),
+    // };
 }
