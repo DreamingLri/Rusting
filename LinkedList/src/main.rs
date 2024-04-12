@@ -34,18 +34,11 @@ impl LinkedList{
         }
     }
 
-    // pub fn peek(&mut self) -> Option<i32>{
-    //     match mem::replace(&mut self.head, None) {
-    //         None => None,
-    //         Some(..) => {
-    //             let mut curr = &self.head.take();
-    //             while curr.is_some() {
-    //                 curr = &curr.as_ref().unwrap().next;
-    //             }
-    //             Some(curr.as_ref().unwrap().elem)
-    //         }
-    //     }
-    // }
+    pub fn peek(&mut self) -> Option<&i32>{
+        self.head.as_ref().map(|node|{
+            &node.elem
+        })
+    }
 
     pub fn print(&mut self){
         let mut curr = &self.head.take();
@@ -72,7 +65,8 @@ fn main() {
     let mut list = LinkedList::new();
     list.push(1);
     list.push(2);
-    println!("{}", list.peek().unwrap());
+
+    println!("{:?}", list.peek().unwrap());
 
     list.print();
 
