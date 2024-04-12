@@ -47,8 +47,14 @@ impl LinkedList{
             curr = &curr.as_ref().unwrap().next;
         }
     }
+
+    pub fn clear(&mut self){
+        self.head = None;
+    }
 }
 fn main() {
+
+    ///easy linked_list
     // let mut s1 = Box::new(Node{elem: 1, next: None});
     // let mut s2 = Box::new(Node{elem: 2, next: None});
     // let mut s3 = Box::new(Node{elem: 3, next: None});
@@ -67,6 +73,8 @@ fn main() {
     list.push(2);
 
     println!("{:?}", list.peek().unwrap());
+
+    list.clear();
 
     list.print();
 
